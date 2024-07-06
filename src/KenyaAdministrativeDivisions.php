@@ -2,9 +2,7 @@
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions;
 
-
-// TODO: Write tests
-// TODO: Support php 5>
+// Use foreach loops instead of nested for loops
 class KenyaAdministrativeDivisions
 {
 

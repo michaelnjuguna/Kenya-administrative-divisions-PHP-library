@@ -8,7 +8,6 @@
       "MichaelNjuguna\\KenyaAdministrativeDivisions\\": "src/"
     }
   },
-  "version": "0.0.1",
   "autoload-dev": {
     "psr-4": {
       "tests\\": "tests/"
