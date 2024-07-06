@@ -32,7 +32,7 @@ To use the library, instantiate the `KenyaAdministrativeDivisions` class:
 ```php
 <?php
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 
