@@ -2,6 +2,7 @@
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions;
 
+
 // TODO: Write tests
 // TODO: Support php 5>
 class KenyaAdministrativeDivisions
@@ -64,9 +65,9 @@ class KenyaAdministrativeDivisions
         } else if (is_string($index)) {
 
             for ($i = 0; $i < sizeof($this->data); $i++) {
-                // print_r($this->data[$i]['constituencies'][0]['constituency_name']);
+
                 for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-                    // print_r($this->data[$i]['constituencies'][$j]['constituency_name']);
+
                     if (strtolower($this->data[$i]['constituencies'][$j]['constituency_name']) == strtolower($index)) {
                         $constituencies = $this->data[$i]['constituencies'][$j];
                         break;
@@ -113,7 +114,7 @@ class KenyaAdministrativeDivisions
                 for ($i = 0; $i < sizeof($this->data); $i++) {
                     if (strtolower($this->data[$i]['county_name']) === strtolower($county)) {
                         for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-                            print_r($this->data[$i]['constituencies']);
+
                             foreach ($this->data[$i]['constituencies'][$j]['wards'] as $wardInfo) {
                                 array_push($wards, $wardInfo);
                             }
@@ -166,11 +167,3 @@ class KenyaAdministrativeDivisions
 
 // Test
 $test = new KenyaAdministrativeDivisions();
-// print_r($test->getCounties());
-// print_r($test->getCounties(2));
-// print_r($test->getCounties('mombasa'));
-
-// print_r($test->getConstituencies(47));
-
-// print_r($test->getWards('mombasa'));
-// print_r($test->getWards("mombasa", 'mvita'));
