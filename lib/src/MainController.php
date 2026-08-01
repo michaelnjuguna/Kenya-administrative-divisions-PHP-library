@@ -1,9 +1,9 @@
 <?php
 
-namespace MichaelNjuguna\KenyaAdministrativeDivisions;
+namespace MichaelNjuguna\KenyaAdministrativeDivisions\Controller;
 
 // Use foreach loops instead of nested for loops
-class KenyaAdministrativeDivisions
+class MainController
 {
 
     private $data;
