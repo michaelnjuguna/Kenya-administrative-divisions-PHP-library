@@ -1,6 +1,9 @@
 <?php
 
-namespace MichaelNjuguna\KenyaAdministrativeDivisions\Controller;
+namespace MichaelNjuguna\KenyaAdministrativeDivisions;
+
+use MichaelNjuguna\KenyaAdministrativeDivisions\Actions\GetAll;
+use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 
 // Use foreach loops instead of nested for loops
 class MainController
@@ -18,10 +21,12 @@ class MainController
         }
     }
 
-    // Get all the information
-    public function getAll()
+    /**
+     * @return County[]
+     */
+    public function getAll(): array
     {
-        return $this->data;
+        return GetAll::execute($this->data);
 
     }
     public function getCounties($index = null)

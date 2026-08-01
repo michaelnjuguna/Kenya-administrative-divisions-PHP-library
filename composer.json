@@ -5,16 +5,16 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "MichaelNjuguna\\KenyaAdministrativeDivisions\\": "src/"
+      "MichaelNjuguna\\KenyaAdministrativeDivisions\\": "lib/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "tests\\": "tests/"
+      "Tests\\": "tests/"
     }
   },
   "require": {
-    "php": ">=5"
+    "php": ">=8.1"
   },
   "authors": [
     {
