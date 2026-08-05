@@ -6,7 +6,10 @@
   "autoload": {
     "psr-4": {
       "MichaelNjuguna\\KenyaAdministrativeDivisions\\": "lib/"
-    }
+    },
+    "classmap": [
+      "lib/src/Models.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {

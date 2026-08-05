@@ -2,3 +2,5 @@
 - CI/CD
 - Rewrite in MBC
 - tests
+- code of conduct
+- contribution.md

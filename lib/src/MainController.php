@@ -17,10 +17,18 @@ class MainController
     {
         $path = __DIR__ . '/Core/county.json';
         $jsonData = file_get_contents($path);
-        $this->data = json_decode($jsonData, true);
+        $data = json_decode($jsonData, true);
         if ($this->data === null && json_last_error() !== JSON_ERROR_NONE) {
             throw new \RuntimeException('Failed to parse JSON file: ' . json_last_error_msg());
         }
+        $this->data = array_map(
+            fn(array $county) => new County(
+                $county['county_code'],
+                $county['county_name'],
+                $county['constituencies']
+            ),
+            $data
+        );
     }
 
     /**
