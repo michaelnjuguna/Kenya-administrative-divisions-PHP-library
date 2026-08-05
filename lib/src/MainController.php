@@ -1,8 +1,9 @@
 <?php
 
-namespace MichaelNjuguna\KenyaAdministrativeDivisions;
+namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 
-use MichaelNjuguna\KenyaAdministrativeDivisions\Actions\GetAll;
+use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\GetAll;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 
 // Use foreach loops instead of nested for loops
@@ -14,7 +15,8 @@ class MainController
     // Constructor to read a JSON file
     public function __construct()
     {
-        $jsonData = file_get_contents(__DIR__ . '/county.json');
+        $path = __DIR__ . '/Core/county.json';
+        $jsonData = file_get_contents($path);
         $this->data = json_decode($jsonData, true);
         if ($this->data === null && json_last_error() !== JSON_ERROR_NONE) {
             throw new \RuntimeException('Failed to parse JSON file: ' . json_last_error_msg());

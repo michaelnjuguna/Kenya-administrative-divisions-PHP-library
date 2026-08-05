@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNjuguna\KenyaAdministrativeDivisions\Actions;
+namespace MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions;
 
 class GetAll
 {

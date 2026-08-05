@@ -2,6 +2,7 @@
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions;
 
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\MainController;
 
 
 class KenyaAdministrativeDivisions
