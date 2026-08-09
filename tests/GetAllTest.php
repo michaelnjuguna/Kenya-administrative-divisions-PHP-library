@@ -14,7 +14,6 @@ class GetAllTest extends TestCase
         $counties = KenyaAdministrativeDivisions::getAll();
         $this->assertIsArray($counties);
         $this->assertCount(47, $counties);
-        print_r($counties[0]);
         $this->expectValidCounty(
             $counties[0],
             $counties[0]->county_code,
