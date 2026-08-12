@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class GetAllTest extends TestCase
 {
     use TestUtils;
-    public function testGetAll(): void
+    public function test_get_all(): void
     {
         $counties = KenyaAdministrativeDivisions::getAll();
         $this->assertIsArray($counties);

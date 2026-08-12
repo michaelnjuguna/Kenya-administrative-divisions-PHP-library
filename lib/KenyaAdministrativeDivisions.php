@@ -1,24 +1,4 @@
 <?php
-
-// namespace MichaelNjuguna\KenyaAdministrativeDivisions;
-
-// use MichaelNjuguna\KenyaAdministrativeDivisions\src\MainController;
-
-
-// class KenyaAdministrativeDivisions
-// {
-//     public static function getAll(): array
-//     {
-//         return (new MainController())->getAll();
-//     }
-//     public static function getCounties(): array
-//     {
-//         return (new MainController())->getCounties();
-//     }
-// }
-
-
-
 namespace MichaelNjuguna\KenyaAdministrativeDivisions;
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\MainController;

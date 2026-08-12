@@ -1,6 +1,23 @@
-- tests
+- GetCounties
+  - tests
+- GetCountiesNames
+  - method
+  - tests
+- GetConstituencies
+  - Action
+  - Method
+  - tests
+- GetConstituencyNames
+  - Method
+  - tests
+- GetWards
+  - Action
+  - Method
+  - tests
+- GetWardNames
+  - method
+  - tests
 - CI/CD
 - Rewrite in MBC
-- tests
 - code of conduct
 - contribution.md

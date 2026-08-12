@@ -7,6 +7,9 @@
     "psr-4": {
       "MichaelNjuguna\\KenyaAdministrativeDivisions\\": "lib/"
     },
+    "files": [
+      "lib/src/Core/params.php"
+    ],
     "classmap": [
       "lib/src/Models.php"
     ]

@@ -5,6 +5,7 @@ namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetCounties};
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\GetCountiesParams;
 
 // Use foreach loops instead of nested for loops
 class MainController
@@ -40,36 +41,17 @@ class MainController
 
     }
 
-    public function getCounties(?object $params = null): array
-    {
+    public function getCounties(
+        ?int $countyCode = null,
+        ?string $countyName = null
+    ): array {
+        $params = new GetCountiesParams(
+            countyCode: $countyCode,
+            countyName: $countyName
+        );
         return GetCounties::execute($this->data, $params);
     }
-    // public function getCounties($index = null)
-    // {
-    //     $counties = [];
-    //     if ($index === null) {
-    //         for ($i = 0; $i < sizeof($this->data); $i++) {
-    //             array_push($counties, [$i + 1, $this->data[$i]['county_name']]);
-    //         }
-    //     } else if (is_int($index) && $index < 48 && $index > 0) {
-    //         $counties = $this->data[$index - 1];
-    //     } else if (is_string($index)) {
-    //         for ($i = 0; $i < sizeof($this->data); $i++) {
-    //             if (strtolower($this->data[$i]['county_name']) === strtolower($index)) {
-    //                 $counties = $this->data[$i];
-    //                 break;
-    //             }
-    //         }
-    //     }
 
-    //     if (empty($counties)) {
-    //         return 'Error: Invalid parameter provided. Please check your input and try again.';
-    //     }
-
-
-
-    //     return $counties;
-    // }
     public function getConstituencies($index = null)
     {
         $constituencies = [];

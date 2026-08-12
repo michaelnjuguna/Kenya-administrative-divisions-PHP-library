@@ -19,7 +19,7 @@ class GetCounties
             if ($countyData === null) {
                 throw new Exception("Unable to read county data");
             }
-            if ($params === null) {
+            if ($params === null || ($params->countyCode === null && empty($params->countyName))) {
                 return $countyData;
             }
             if (isset($params->countyCode)) {
