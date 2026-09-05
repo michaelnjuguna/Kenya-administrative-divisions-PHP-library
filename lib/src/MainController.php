@@ -4,6 +4,7 @@ namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 
 use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
+use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetCounties};
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\GetCountiesParams;
@@ -52,6 +53,10 @@ class MainController
         );
         return GetCounties::execute($this->data, $params);
     }
+    /**
+     * @return Constituency[]
+     * @throws Exception
+     */
 
     public function getCountyNames()
     {
@@ -61,6 +66,7 @@ class MainController
             throw new Exception("Failed to get county names: " . $th->getMessage(), 0, $th);
         }
     }
+
     public function getConstituencies($index = null)
     {
         $constituencies = [];
