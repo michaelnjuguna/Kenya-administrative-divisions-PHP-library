@@ -1,5 +1,4 @@
 - GetCounties
-  - tests
 - GetCountiesNames
   - method
   - tests
