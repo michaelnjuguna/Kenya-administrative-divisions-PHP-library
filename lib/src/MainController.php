@@ -56,7 +56,7 @@ class MainController
     public function getCountyNames()
     {
         try {
-            return array_map(fn($county) => $county->countyName, $this->data);
+            return array_map(fn($county) => $county->county_name, $this->data);
         } catch (\Throwable $th) {
             throw new Exception("Failed to get county names: " . $th->getMessage(), 0, $th);
         }
