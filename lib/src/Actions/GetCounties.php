@@ -1,7 +1,8 @@
 <?php
 namespace MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions;
 
-use Exception;
+use InvalidArgumentException;
+
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 
 class GetCounties
@@ -24,13 +25,15 @@ class GetCounties
             }
             if (isset($params->countyCode)) {
                 if ($params->countyCode < 1 || $params->countyCode > 47) {
-                    throw new Exception("Invalid county code. County code should be between 1 and 47");
+                    throw new InvalidArgumentException("Invalid county code. County code should be between 1 and 47");
                 }
                 $index = $params->countyCode - 1;
                 return isset($countyData[$index]) ? [$countyData[$index]] : [];
             }
             if (!empty($params->countyName)) {
                 $target = strtolower($params->countyName);
+
+
                 foreach ($countyData as $county) {
                     $countyName = is_array($county) ? $county['county_name'] : $county->county_name;
                     if (strtolower($countyName) === $target) {
