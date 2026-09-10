@@ -5,9 +5,9 @@ namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
-use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetCounties};
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties};
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
-use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\GetCountiesParams;
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams};
 
 // Use foreach loops instead of nested for loops
 class MainController
@@ -67,39 +67,22 @@ class MainController
         }
     }
 
-    public function getConstituencies($index = null)
-    {
-        $constituencies = [];
-        if ($index === null) {
-            for ($i = 0; $i < sizeof($this->data); $i++) {
-                // array_push($constituencies, $this->data[$i]['constituencies']['constituency_name']);
-                foreach ($this->data[$i]['constituencies'] as $constituency) {
-                    array_push($constituencies, $constituency['constituency_name']);
-                }
-            }
-        } else if (is_string($index)) {
+    /**
+     * @return Constituency[]
+     * @throws Exception
+     */
 
-            for ($i = 0; $i < sizeof($this->data); $i++) {
-
-                for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-
-                    if (strtolower($this->data[$i]['constituencies'][$j]['constituency_name']) == strtolower($index)) {
-                        $constituencies = $this->data[$i]['constituencies'][$j];
-                        break;
-                    }
-                }
-            }
-
-        } else if (is_int($index) && $index > 0 && $index < 48) {
-            foreach ($this->data[$index - 1]['constituencies'] as $constituency) {
-                array_push($constituencies, $constituency['constituency_name']);
-            }
-        }
-
-        if (empty($constituencies)) {
-            return 'Error: Invalid parameter provided. Please check your input and try again.';
-        }
-        return $constituencies;
+    public function getConstituencies(
+        ?int $countyCode = null,
+        ?string $countyName = null,
+        ?string $constituencyName = null
+    ): array {
+        $params = new GetConstituenciesParams(
+            countyCode: $countyCode,
+            countyName: $countyName,
+            constituencyName: $constituencyName
+        );
+        return GetConstituencies::execute($this->data, $params);
     }
 
     public function getWards($county = null, $constituency = null)

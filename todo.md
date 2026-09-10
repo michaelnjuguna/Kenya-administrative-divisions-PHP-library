@@ -1,6 +1,6 @@
-- GetCounties
 - GetCountiesNames
-  - method
+  - Setup method
+  - Implement code
   - tests
 - GetConstituencies
   - Action
