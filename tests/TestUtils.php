@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
 use PHPUnit\Framework\TestCase;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 
@@ -16,5 +17,12 @@ trait TestUtils
         $this->assertEquals($expectedCode, $county->county_code);
         $this->assertEquals($expectedName, $county->county_name);
         $this->assertIsArray($county->constituencies);
+    }
+    private function expectValidConstituency(
+        Constituency $constituency,
+        string $expectedName
+    ): void {
+        $this->assertEquals($expectedName, $constituency->constituency_name);
+        $this->assertInstanceOf(Constituency::class, $constituency);
     }
 }
