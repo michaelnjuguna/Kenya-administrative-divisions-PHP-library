@@ -21,12 +21,12 @@ class GetConstituencies
                     $params->constituencyName === null
                 )
             ) {
-                return array_merge(
-                    ...array_map(
-                        fn($countyData) => $countyData->constituencies,
-                        $countyData
-                    )
-                );
+
+                $allConstituencies = [];
+                foreach ($countyData as $county) {
+                    array_push($allConstituencies, ...$county->constituencies);
+                }
+                return $allConstituencies;
             }
             if (isset($params->countyCode)) {
                 if ($params->countyCode < 1 || $params->countyCode > 47) {

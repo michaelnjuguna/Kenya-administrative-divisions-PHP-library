@@ -2,6 +2,15 @@
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions\Models;
 
+class Constituency
+{
+    public function __construct(
+        public string $constituency_name,
+        /** @var Ward[] */
+        public array $wards = []
+    ) {
+    }
+}
 class County
 {
     public function __construct(
@@ -13,15 +22,6 @@ class County
     }
 }
 
-class Constituency
-{
-    public function __construct(
-        public string $constituency_name,
-        /** @var Ward[] */
-        public array $wards = []
-    ) {
-    }
-}
 
 class Ward
 {

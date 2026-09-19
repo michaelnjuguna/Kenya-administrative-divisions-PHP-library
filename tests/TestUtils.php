@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
 use PHPUnit\Framework\TestCase;
+use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 
 trait TestUtils

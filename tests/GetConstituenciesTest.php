@@ -11,6 +11,7 @@ class GetConstituenciesTest extends TestCase
     public function test_no_params_passed(): void
     {
         $result = KenyaAdministrativeDivisions::getConstituencies();
+        var_dump($result[0]);
         $this->assertIsArray($result);
         $this->expectValidConstituency($result[0], 'Changamwe');
 

@@ -4,9 +4,8 @@ namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 
 use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
-use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Constituency;
+use MichaelNjuguna\KenyaAdministrativeDivisions\Models\{Constituency, Ward, County};
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties};
-use MichaelNjuguna\KenyaAdministrativeDivisions\Models\County;
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams};
 
 // Use foreach loops instead of nested for loops
@@ -26,9 +25,20 @@ class MainController
         }
         $this->data = array_map(
             fn(array $county) => new County(
-                $county['county_code'],
-                $county['county_name'],
-                $county['constituencies']
+                county_code: $county['county_code'],
+                county_name: $county['county_name'],
+                constituencies: array_map(
+                    fn(array $constituency) => new Constituency(
+                        constituency_name: $constituency['constituency_name'],
+                        wards: array_map(
+                            fn(mixed $ward) => new Ward(
+                                name: is_string($ward) ? $ward : ($ward['name'] ?? '')
+                            ),
+                            $constituency['wards'] ?? []
+                        )
+                    ),
+                    $county['constituencies'] ?? []
+                )
             ),
             $data
         );

@@ -15,6 +15,11 @@ class GetCountiesTest extends TestCase
         $result = KenyaAdministrativeDivisions::getCounties();
         $this->assertIsArray($result);
         $this->assertCount(47, $result);
+        $this->expectValidCounty(
+            $result[0],
+            $result[0]->county_code,
+            $result[0]->county_name
+        );
     }
     public function test_valid_number_param(): void
     {
