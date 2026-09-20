@@ -43,9 +43,14 @@ class GetCounties
                 return [];
             }
             return [];
-        } catch (Exception $error) {
-            throw new Exception(
-                $error instanceof Exception ? $error->getMessage() : "An unknown error occurred"
+        } catch (InvalidArgumentException $e) {
+            throw $e;
+        } catch (\Throwable $th) {
+            //throw $th;
+            throw new \RuntimeException(
+                'Failed to get counties: ' . $th->getMessage(),
+                0,
+                $th
             );
         }
     }

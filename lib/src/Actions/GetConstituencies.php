@@ -40,13 +40,15 @@ class GetConstituencies
                 foreach ($countyData as $county) {
                     $countyName = is_array($county) ? $county['county_name'] : $county->county_name;
                     if (strtolower($countyName) === $target) {
-                        return [$county];
+                        return $county->constituencies;
                     }
                 }
                 throw new InvalidArgumentException("Invalid county name");
 
             }
 
+        } catch (InvalidArgumentException $e) {
+            throw $e;
         } catch (\Throwable $th) {
             //throw $th;
             throw new \RuntimeException(
