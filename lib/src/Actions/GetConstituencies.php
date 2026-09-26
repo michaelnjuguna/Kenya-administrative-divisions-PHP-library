@@ -46,6 +46,17 @@ class GetConstituencies
                 throw new InvalidArgumentException("Invalid county name");
 
             }
+            if (isset($params->constituencyName)) {
+                $target = strtolower($params->constituencyName);
+                foreach ($countyData as $county) {
+                    foreach ($county->constituencies as $constituency) {
+                        if (strtolower($constituency->constituency_name) === $target) {
+                            return [$constituency];
+                        }
+                    }
+                }
+                throw new InvalidArgumentException("Invalid constituency name");
+            }
 
         } catch (InvalidArgumentException $e) {
             throw $e;

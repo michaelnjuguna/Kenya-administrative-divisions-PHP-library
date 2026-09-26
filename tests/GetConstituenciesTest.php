@@ -49,4 +49,19 @@ class GetConstituenciesTest extends TestCase
         $this->assertIsArray($result);
         $this->expectValidConstituency($result[0], 'Changamwe');
     }
+
+    public function test_invalid_constituency_name_throws_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid constituency name");
+        KenyaAdministrativeDivisions::getConstituencies(constituencyName: 'Invalid constituency name');
+    }
+    public function test_valid_constituency_name_returns_array(): void
+    {
+        $result = KenyaAdministrativeDivisions::getConstituencies(constituencyName: 'Changamwe');
+        $this->assertIsArray($result);
+        $this->expectValidConstituency($result[0], 'Changamwe');
+
+
+    }
 }
