@@ -16,4 +16,12 @@ class HelperMethodTest extends TestCase
         $this->assertCount(47, $counties);
     }
 
+    public function test_get_constituency_names(): void
+    {
+        $constituencies = KenyaAdministrativeDivisions::getConstituencyNames();
+        $this->assertNotEmpty($constituencies);
+        $this->assertIsArray($constituencies);
+        $this->assertContainsOnly('string', $constituencies, true);
+    }
+
 }

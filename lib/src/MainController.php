@@ -95,6 +95,21 @@ class MainController
         return GetConstituencies::execute($this->data, $params);
     }
 
+    public function getConstituencyNames()
+    {
+        try {
+            $result = [];
+            foreach ($this->data as $county) {
+                foreach ($county->constituencies as $constituencies) {
+                    array_push($result, $constituencies->constituency_name);
+                }
+            }
+            return $result;
+        } catch (\Throwable $th) {
+            throw new Exception("Failed to get constituency names: " . $th->getMessage(), 0, $th);
+        }
+    }
+
     public function getWards($county = null, $constituency = null)
     {
         $wards = [];
