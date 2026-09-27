@@ -12,6 +12,21 @@ class GetWards
             if ($countyData === null) {
                 throw new Exception("Unable to read county data");
             }
+            if (
+                $params === null || (
+                    $params->countyCode === null &&
+                    $params->countyName === null &&
+                    $params->constituencyName === null
+                )
+            ) {
+                $allWards = [];
+                foreach ($countyData as $county) {
+                    foreach ($county->constituencies as $constituency) {
+                        array_push($allWards, $constituency->wards);
+                    }
+                }
+                return $allWards;
+            }
         } catch (InvalidArgumentException $e) {
             throw $e;
         } catch (\Throwable $th) {
