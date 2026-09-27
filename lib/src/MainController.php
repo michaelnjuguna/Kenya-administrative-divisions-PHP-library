@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 
 use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\{Constituency, Ward, County};
-use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties};
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties, GetWards};
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams};
 
 // Use foreach loops instead of nested for loops
@@ -52,6 +53,10 @@ class MainController
         return GetAll::execute($this->data);
 
     }
+    /**
+     * @return County[]
+     * @throws Exception
+     */
 
     public function getCounties(
         ?int $countyCode = null,
@@ -64,7 +69,7 @@ class MainController
         return GetCounties::execute($this->data, $params);
     }
     /**
-     * @return Constituency[]
+     * @return String[]
      * @throws Exception
      */
 
@@ -95,6 +100,10 @@ class MainController
         return GetConstituencies::execute($this->data, $params);
     }
 
+    /**
+     * @return String[]
+     * @throws Exception
+     */
     public function getConstituencyNames()
     {
         try {
@@ -110,82 +119,25 @@ class MainController
         }
     }
 
-    public function getWards($county = null, $constituency = null)
-    {
-        $wards = [];
-        // When no parameter is provided
-        if ($county === null && $constituency === null) {
-            for ($i = 0; $i < sizeof($this->data); $i++) {
-                for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-                    for ($k = 0; $k < sizeof($this->data[$i]['constituencies'][$j]['wards']); $k++) {
-                        array_push($wards, $this->data[$i]['constituencies'][$j]['wards'][$k]);
+    /**
+     * @return Constituency[]
+     * @throws Exception
+     */
 
-                    }
-                }
-            }
-        }
-
-        // When only the county name or code is provided
-        if (!!$county && $constituency === null) {
-            if (is_int($county)) {
-                for ($i = 0; $i < sizeof($this->data[$county - 1]['constituencies']); $i++) {
-                    foreach ($this->data[$county - 1]['constituencies'][$i]['wards'] as $wardInfo) {
-                        array_push($wards, $wardInfo);
-                    }
-                }
-            } else if (is_string($county)) {
-                for ($i = 0; $i < sizeof($this->data); $i++) {
-                    if (strtolower($this->data[$i]['county_name']) === strtolower($county)) {
-                        for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-
-                            foreach ($this->data[$i]['constituencies'][$j]['wards'] as $wardInfo) {
-                                array_push($wards, $wardInfo);
-                            }
-
-                        }
-                        break;
-                    }
-
-                }
-            }
-        } else if (!!$county === false && !!$constituency) {
-            for ($i = 0; $i < sizeof($this->data); $i++) {
-                for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-                    if (strtolower($this->data[$i]['constituencies'][$j]['constituency_name']) === strtolower($constituency)) {
-                        $wards = $this->data[$i]['constituencies'][$j]['wards'];
-                        break;
-                    }
-                }
-            }
-        } else if (!!$county && !!$constituency) {
-            if (is_int($county) && $county > 0 && $county < 48) {
-                for ($i = 0; $i < sizeof($this->data[$county - 1]['constituencies']); $i++) {
-                    if (strtolower($this->data[$county - 1]['constituencies'][$i]['constituency_name']) === strtolower($constituency)) {
-                        $wards = $this->data[$county - 1]['constituencies'][$i]['wards'];
-                        break;
-                    }
-                }
-            } else if (is_string($county)) {
-                for ($i = 0; $i < sizeof($this->data); $i++) {
-                    if (strtolower($this->data[$i]['county_name']) === strtolower($county)) {
-                        for ($j = 0; $j < sizeof($this->data[$i]['constituencies']); $j++) {
-                            if (strtolower($this->data[$i]['constituencies'][$j]['constituency_name']) === strtolower($constituency)) {
-                                $wards = $this->data[$i]['constituencies'][$j]['wards'];
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (empty($wards)) {
-            return 'Error: Invalid parameter provided. Please check your input and try again.';
-        }
-
-        return $wards;
+    public function getWards(
+        ?int $countyCode = null,
+        ?string $countyName = null,
+        ?string $constituencyName = null
+    ): array {
+        $params = new GetConstituenciesParams(
+            countyCode: $countyCode,
+            countyName: $countyName,
+            constituencyName: $constituencyName
+        );
+        return GetWards::execute($this->data, $params);
     }
+
+
 }
 
 // Test

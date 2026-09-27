@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests;
 
@@ -23,5 +24,6 @@ class HelperMethodTest extends TestCase
         $this->assertIsArray($constituencies);
         $this->assertContainsOnly('string', $constituencies, true);
     }
+
 
 }

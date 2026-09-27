@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions;
 
