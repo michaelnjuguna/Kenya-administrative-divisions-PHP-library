@@ -22,11 +22,31 @@ class GetWards
                 $allWards = [];
                 foreach ($countyData as $county) {
                     foreach ($county->constituencies as $constituency) {
-                        array_push($allWards, $constituency->wards);
+                        array_push($allWards, ...$constituency->wards);
                     }
                 }
+
                 return $allWards;
             }
+
+            // TODO: County code
+            if (isset($params->countyCode)) {
+                if ($params->countyCode < 1 || $params->countyCode > 47) {
+                    throw new InvalidArgumentException("Invalid county code. County code should be between 1 and 47");
+                }
+                $index = $params->countyCode - 1;
+                $wards = [];
+                foreach ($countyData[$index]->constituencies as $constituency) {
+                    array_push($wards, ...$constituency->wards);
+                }
+                return $wards;
+            }
+            // TODO: County name
+
+            // TODO: Constituency name
+
+
+
         } catch (InvalidArgumentException $e) {
             throw $e;
         } catch (\Throwable $th) {
