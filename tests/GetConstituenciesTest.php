@@ -5,7 +5,10 @@ namespace Tests;
 use InvalidArgumentException;
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+
+#[Group('Constituencies')]
 class GetConstituenciesTest extends TestCase
 {
     use TestUtils;

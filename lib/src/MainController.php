@@ -7,7 +7,7 @@ use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\{Constituency, Ward, County};
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties, GetWards};
-use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams};
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams, GetWardsParams};
 
 // Use foreach loops instead of nested for loops
 class MainController
@@ -129,7 +129,7 @@ class MainController
         ?string $countyName = null,
         ?string $constituencyName = null
     ): array {
-        $params = new GetConstituenciesParams(
+        $params = new GetWardsParams(
             countyCode: $countyCode,
             countyName: $countyName,
             constituencyName: $constituencyName

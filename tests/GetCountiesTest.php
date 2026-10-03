@@ -6,8 +6,10 @@ namespace Tests;
 use Exception;
 use InvalidArgumentException;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
+#[Group('Counties')]
 class GetCountiesTest extends TestCase
 {
     use TestUtils;

@@ -6,8 +6,11 @@ use InvalidArgumentException;
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\Ward;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
+
+#[Group('wards')]
 class GetWardsTest extends TestCase
 {
     public function test_no_params_passed(): void
@@ -39,5 +42,20 @@ class GetWardsTest extends TestCase
         $this->assertInstanceOf(Ward::class, $result[0]);
 
     }
+
+    public function test_invalid_county_name_returns_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid county name.");
+        KenyaAdministrativeDivisions::getWards(countyName: 'Invalid name');
+    }
+    public function test_valid_county_name_returns_wards(): void
+    {
+        $result = KenyaAdministrativeDivisions::getWards(countyName: 'Mombasa');
+        $this->assertIsArray($result);
+        $this->assertNotEmpty($result);
+        $this->assertInstanceOf(Ward::class, $result[0]);
+    }
+
 
 }

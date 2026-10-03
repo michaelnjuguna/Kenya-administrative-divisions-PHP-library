@@ -29,8 +29,8 @@ class GetWards
                 return $allWards;
             }
 
-            // TODO: County code
             if (isset($params->countyCode)) {
+
                 if ($params->countyCode < 1 || $params->countyCode > 47) {
                     throw new InvalidArgumentException("Invalid county code. County code should be between 1 and 47");
                 }
@@ -41,7 +41,25 @@ class GetWards
                 }
                 return $wards;
             }
-            // TODO: County name
+
+            if (isset($params->countyName)) {
+
+                $countyName = strtolower($params->countyName);
+                $countyWards = [];
+                foreach ($countyData as $county) {
+                    if (strtolower($county->county_name) === $countyName) {
+                        foreach ($county->constituencies as $constituency) {
+                            array_push($countyWards, ...$constituency->wards);
+
+                        }
+
+
+                        return $countyWards;
+                    }
+
+                }
+                throw new InvalidArgumentException("Invalid county name.");
+            }
 
             // TODO: Constituency name
 

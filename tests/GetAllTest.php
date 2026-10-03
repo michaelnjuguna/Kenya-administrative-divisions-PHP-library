@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Tests;
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-
+#[Group(All)]
 class GetAllTest extends TestCase
 {
     use TestUtils;
