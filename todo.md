@@ -1,11 +1,5 @@
-- GetWards
-  - Action
-  - Method
-  - tests
-- GetWardNames
-  - method
-  - tests
 - CI/CD
-- Rewrite in MBC
+- README.md
 - code of conduct
 - contribution.md
+- Changelog.md

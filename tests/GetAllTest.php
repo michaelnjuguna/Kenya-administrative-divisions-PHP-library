@@ -7,7 +7,7 @@ use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-#[Group(All)]
+#[Group('All')]
 class GetAllTest extends TestCase
 {
     use TestUtils;
