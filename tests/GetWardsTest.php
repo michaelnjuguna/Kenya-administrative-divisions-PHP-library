@@ -58,4 +58,19 @@ class GetWardsTest extends TestCase
     }
 
 
+    public function test_invalid_constituency_name_returns_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid constituency name.");
+        KenyaAdministrativeDivisions::getWards(constituencyName: 'Invalid name');
+    }
+
+    public function test_valid_constituencyName_name_returns_wards(): void
+    {
+        $result = KenyaAdministrativeDivisions::getWards(constituencyName: 'Changamwe');
+        $this->assertIsArray($result);
+        $this->assertNotEmpty($result);
+        $this->assertInstanceOf(Ward::class, $result[0]);
+    }
+
 }
