@@ -1,5 +1,2 @@
-- CI/CD
 - README.md
-- code of conduct
-- contribution.md
-- Changelog.md
+- Deploy

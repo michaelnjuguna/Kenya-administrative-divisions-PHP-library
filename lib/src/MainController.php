@@ -140,5 +140,3 @@ class MainController
 
 }
 
-// Test
-$test = new KenyaAdministrativeDivisions();
