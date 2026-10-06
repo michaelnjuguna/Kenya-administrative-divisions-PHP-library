@@ -1,2 +1,5 @@
 - README.md
 - Deploy
+- Helper methods
+  - Get constituencynames
+  - Get ward names

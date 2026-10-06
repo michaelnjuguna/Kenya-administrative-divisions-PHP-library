@@ -6,7 +6,7 @@ namespace MichaelNjuguna\KenyaAdministrativeDivisions\src;
 use Exception;
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 use MichaelNjuguna\KenyaAdministrativeDivisions\Models\{Constituency, Ward, County};
-use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetCounties, GetWards};
+use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetConstituencyNames, GetCounties, GetWards};
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams, GetWardsParams};
 
 // Use foreach loops instead of nested for loops
@@ -104,19 +104,15 @@ class MainController
      * @return String[]
      * @throws Exception
      */
-    public function getConstituencyNames()
-    {
-        try {
-            $result = [];
-            foreach ($this->data as $county) {
-                foreach ($county->constituencies as $constituencies) {
-                    array_push($result, $constituencies->constituency_name);
-                }
-            }
-            return $result;
-        } catch (\Throwable $th) {
-            throw new Exception("Failed to get constituency names: " . $th->getMessage(), 0, $th);
-        }
+    public function getConstituencyNames(
+        ?int $countyCode = null,
+        ?string $countyName = null,
+    ): array {
+        $params = new GetWardsParams(
+            countyCode: $countyCode,
+            countyName: $countyName,
+        );
+        return GetConstituencyNames::execute($this->data, $params);
     }
 
     /**

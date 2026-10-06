@@ -2,17 +2,22 @@
 
 The **Kenya Administrative Divisions** PHP Library is a package that provides functionality to retrieve administrative divisions data for Kenya. It includes information about counties, constituencies, and wards.
 
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for all changes
+
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
   - [Getting started](#getting-started)
   - [Methods available](#methods-available)
+    - [Helper methods](#helper-methods)
     - [Get all](#get-all)
     - [Get counties](#get-counties)
     - [Get constituencies](#get-constituencies)
     - [Get wards](#get-wards)
-- [Contributing](#contributing)
+- [API reference](#api-reference)
 - [Support](#support)
 
 ## Installation
@@ -36,12 +41,22 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use MichaelNjuguna\KenyaAdministrativeDivisions\KenyaAdministrativeDivisions;
 
-// Instantiate the class
-$kenyaAdministrativeDivisions = new KenyaAdministrativeDivisions();
 
 ```
 
 ## Methods available
+
+### Helper methods
+
+```php
+// Get all county names
+$countyNames = KenyaAdministrativeDivisions::getCountyNames();
+
+// Get all constituency names
+$constituencies = KenyaAdministrativeDivisions::getConstituencyNames();
+
+
+```
 
 ### Get All
 
