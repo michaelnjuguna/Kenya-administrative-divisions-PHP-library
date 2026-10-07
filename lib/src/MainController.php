@@ -9,7 +9,7 @@ use MichaelNjuguna\KenyaAdministrativeDivisions\Models\{Constituency, Ward, Coun
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Actions\{GetAll, GetConstituencies, GetConstituencyNames, GetCounties, GetWards};
 use MichaelNjuguna\KenyaAdministrativeDivisions\src\Core\{GetConstituenciesParams, GetCountiesParams, GetWardsParams};
 
-// Use foreach loops instead of nested for loops
+
 class MainController
 {
 

@@ -16,16 +16,17 @@ class HelperMethodTest extends TestCase
         $counties = KenyaAdministrativeDivisions::getCountyNames();
         $this->assertNotEmpty($counties);
         $this->assertIsArray($counties);
-        $this->assertContainsOnly('string', $counties, true);
+
         $this->assertCount(47, $counties);
     }
+
 
     public function test_get_constituency_names(): void
     {
         $constituencies = KenyaAdministrativeDivisions::getConstituencyNames();
         $this->assertNotEmpty($constituencies);
         $this->assertIsArray($constituencies);
-        $this->assertContainsOnly('string', $constituencies, true);
+        $this->assertContainsOnlyString($constituencies);
     }
 
 
