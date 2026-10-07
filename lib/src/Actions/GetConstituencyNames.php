@@ -27,6 +27,20 @@ class GetConstituencyNames
                 }
                 return $result;
             }
+            if (isset($params->countyCode)) {
+                if ($params->countyCode < 1 || $params->countyCode > 47) {
+                    throw new InvalidArgumentException("Invalid county code. County code should be between 1 and 47");
+                }
+                $index = $params->countyCode - 1;
+                $result = [];
+                foreach ($countyData[$index]->constituencies as $constituency) {
+                    array_push($result, $constituency->constituency_name);
+                }
+                return $result;
+            }
+        } catch (InvalidArgumentException $e) {
+            throw $e;
+
         } catch (\Throwable $th) {
             throw new Exception("Failed to get constituency names: " . $th->getMessage(), 0, $th);
         }
