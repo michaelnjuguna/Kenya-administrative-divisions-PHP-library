@@ -54,32 +54,28 @@ $countyNames = KenyaAdministrativeDivisions::getCountyNames();
 
 // Get all constituency names
 $constituencies = KenyaAdministrativeDivisions::getConstituencyNames();
-
-
+$mombasaConstituencies = KenyaAdministrativeDivisions::getCounties(countyCode: 1);
+    $mombasaConstituencies = KenyaAdministrativeDivisions::getCounties(countyName: 'mombasa');
 ```
 
 ### Get All
 
 ```php
 // Get All the data
-$data = $kenyaAdministrativeDivisions->getAll();
-print_r($data);
+$counties = KenyaAdministrativeDivisions::getAll();
 ```
 
 ### Get Counties
 
 ```php
 // Get all counties
-$counties = $kenyaAdministrativeDivisions->getCounties();
-print_r($counties);
+$result = KenyaAdministrativeDivisions::getCounties();
 
 // Get county information by passing the county code
-$county = $kenyaAdministrativeDivisions->getCounties(1);
-print_r($county);
+$result = KenyaAdministrativeDivisions::getCounties(countyCode: 1);
 
 // Get county information by passing the county name
-$county = $kenyaAdministrativeDivisions->getCounties('Mombasa');
-print_r($county);
+$result = KenyaAdministrativeDivisions::getCounties(countyName: 'mombasa');
 ```
 
 ### Get Constituencies
