@@ -38,6 +38,21 @@ class GetConstituencyNames
                 }
                 return $result;
             }
+            if (isset($params->countyName)) {
+                $target = strtolower($params->countyName);
+                foreach ($countyData as $county) {
+                    $countyName = is_array($county) ? $county['county_name'] : $county->county_name;
+                    if (strtolower($countyName) === $target) {
+                        $result = [];
+                        foreach ($county->constituencies as $constituency) {
+                            array_push($result, $constituency->constituency_name);
+                        }
+                        return $result;
+                    }
+                }
+                throw new InvalidArgumentException("Invalid county name");
+
+            }
         } catch (InvalidArgumentException $e) {
             throw $e;
 

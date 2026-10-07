@@ -56,5 +56,18 @@ class HelperMethodTest extends TestCase
     }
 
 
-
+    #[Group('get_constituency_names')]
+    public function test_invalid_county_name_throws_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid county name");
+        KenyaAdministrativeDivisions::getConstituencyNames(countyName: 'Invalid name');
+    }
+    #[Group('get_constituency_names')]
+    public function test_valid_county_name_returns_array(): void
+    {
+        $result = KenyaAdministrativeDivisions::getConstituencyNames(countyName: 'Mombasa');
+        $this->assertIsArray($result);
+        $this->assertEquals('Changamwe', $result[0]);
+    }
 }
