@@ -1,6 +1,6 @@
 {
   "name": "michaelnjuguna/kenya-administrative-divisions",
-  "description": "This package generates information about Kenya geographic data",
+  "description": "A PHP library for accessing Kenya's administrative divisions",
   "type": "library",
   "license": "MIT",
   "autoload": {
