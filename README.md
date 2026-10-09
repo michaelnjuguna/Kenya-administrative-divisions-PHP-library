@@ -55,7 +55,7 @@ $countyNames = KenyaAdministrativeDivisions::getCountyNames();
 // Get all constituency names
 $constituencies = KenyaAdministrativeDivisions::getConstituencyNames();
 $mombasaConstituencies = KenyaAdministrativeDivisions::getCounties(countyCode: 1);
-    $mombasaConstituencies = KenyaAdministrativeDivisions::getCounties(countyName: 'mombasa');
+$mombasaConstituencies = KenyaAdministrativeDivisions::getCounties(countyName: 'mombasa');
 ```
 
 ### Get All
@@ -82,16 +82,16 @@ $result = KenyaAdministrativeDivisions::getCounties(countyName: 'mombasa');
 
 ```php
 // Get all constituencies
-$constituencies = $kenyaAdministrativeDivisions->getConstituencies();
-print_r($constituencies);
+$result = KenyaAdministrativeDivisions::getConstituencies();
+
+// Get a specific constituency information
+$result = KenyaAdministrativeDivisions::getConstituencies(constituencyName: 'Changamwe');
 
 // Get constituencies of a particular county by its code
-$constituencies = $kenyaAdministrativeDivisions->getConstituencies(1);
-print_r($constituencies);
+$result = KenyaAdministrativeDivisions::getConstituencies(countyCode: 1);
 
 // Get constituencies of a particular county by its name
-$constituencies = $kenyaAdministrativeDivisions->getConstituencies('Nairobi');
-print_r($constituencies);
+$result = KenyaAdministrativeDivisions::getConstituencies(countyName: 'Mombasa');
 
 ```
 
@@ -99,35 +99,72 @@ print_r($constituencies);
 
 ```php
 // Get all wards
-$wards = $kenyaAdministrativeDivisions->getWards();
-print_r($wards);
+$result = KenyaAdministrativeDivisions::getWards();
 
 // Get wards of a particular county by passing its county code
-$wards = $kenyaAdministrativeDivisions->getWards(1);
-print_r($wards);
+$result = KenyaAdministrativeDivisions::getWards(countyCode: 1);
 
 // Get wards of a particular county by passing its name
-$wards = $kenyaAdministrativeDivisions->getWards('Mombasa');
-print_r($wards);
-
-// Get wards of a particular county and constituency by passing the respective county code/name and constituency name
-$wards = $kenyaAdministrativeDivisions->getWards(1, 'Mvita');
-$wards = $kenyaAdministrativeDivisions->getWards('Mombasa', 'Mvita');
+$result = KenyaAdministrativeDivisions::getWards(countyName: 'Mombasa');
 
 // Get the wards of a particular constituency by passing its name
-$wards = $kenyaAdministrativeDivisions->getWards(null, 'Mvita');
-print_r($wards);
+$result = KenyaAdministrativeDivisions::getWards(constituencyName: 'Changamwe');
 ```
 
-## Contributing
+## API reference
 
-1. Fork this repository.
-2. Create new branch with feature name.
-3. Create your feature.
-4. Run the tests and make sure all the tests pass.
-5. Commit and set commit message with feature name.
-6. Push your code to your fork repository.
-7. Create pull request.
+### `getAll`
+
+Returns the complete hierarchical data structure of Kenya's administrative divisions.
+
+- **Returns**: `County[]`
+
+---
+
+### `getCounties(?countyCode: int,?countyName:string)`
+
+Retrieves a list of counties. If no parameters are provided, it returns all 47 counties.
+
+- **Parameters**:
+  - `countyCode`: (1-47) Returns the specific county matching the code.
+  - `countyName`: Returns the specific county matching the name.
+
+- **Returns**: `County[]`
+- **Throws**: `Error` if an invalid `countyCode` or `countyName` is passed as parameter
+
+---
+
+### `getConstituencies(?countyCode:int,?countyName:string,?constituencyName:string)
+
+Retrieves constituencies, optionally filtered by their parent county.
+
+- **Parameters**:
+  - `countyCode`: Returns all constituencies within that county code.
+  - `countyName`: Returns all constituencies within that county name.
+  - `constituencyName`: Returns all the information about the constituency
+
+- **Returns**: `Constituency[]`
+- **Throws**: `Error` if an invalid `countyCode`,`countyName` or `constituencyName` is passed as parameter
+
+### `getWards(?countyCode:int,?countyName:string,?constituencyName:string)`
+
+Retrieves wards based on the provided filter depth.
+
+- **Parameters**:
+  - `countyCode`: Returns all constituencies within that county code.
+  - `countyName`: Returns all constituencies within that county name.
+  - `constituencyName`: Returns all the information about the constituency
+- **Returns**: `Ward[]`
+- **Throws**: `Error` if an invalid `countyCode`,`countyName` or `constituencyName` is passed as parameter
+
+---
+
+### Name Helpers
+
+Methods for retrieving flat arrays of strings.
+
+- **`getCountyNames()`**: Returns `string[]`
+- **`getConstituencyNames()`**: Returns `string[]`
 
 ## Support
 
